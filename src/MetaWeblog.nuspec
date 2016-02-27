@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>WilderMinds.MetaWeblog</id>
-    <version>0.0.1-alpha</version>
+    <version>0.0.2-beta</version>
     <authors>Shawn Wildermuth</authors>
     <owners>Shawn Wildermuth</owners>
     <licenseUrl>https://github.com/shawnwildermuth/MetaWeblog/blob/master/LICENSE.md</licenseUrl>
@@ -21,4 +21,7 @@
       </group>
     </dependencies>
   </metadata>
+  <files>
+    <file src="artifacts\bin\MetaWeblog\release\dnx451\*.dll" target="lib\dnx451" /> 
+  </files>
 </package>
