@@ -1,6 +1,4 @@
 ﻿using System;
-using XmlRpcLight.Attributes;
-using XmlRpcLight.Enums;
 
 namespace WilderMinds.MetaWeblog
 {
@@ -17,7 +15,6 @@ namespace WilderMinds.MetaWeblog
     public string categoryName;
   }
 
-  [Serializable]
   public struct CategoryInfo
   {
     public string description;
@@ -27,7 +24,6 @@ namespace WilderMinds.MetaWeblog
     public string categoryid;
   }
 
-  [XmlRpcMissingMapping(MappingAction.Ignore)]
   public struct Enclosure
   {
     public int length;
@@ -35,7 +31,6 @@ namespace WilderMinds.MetaWeblog
     public string url;
   }
 
-  [XmlRpcMissingMapping(MappingAction.Ignore)]
   public struct Post
   {
     public DateTime dateCreated;
@@ -49,7 +44,6 @@ namespace WilderMinds.MetaWeblog
   }
 
 
-  [XmlRpcMissingMapping(MappingAction.Ignore)]
   public struct Source
   {
     public string name;
@@ -66,7 +60,6 @@ namespace WilderMinds.MetaWeblog
     public string url;
   }
 
-  [XmlRpcMissingMapping(MappingAction.Ignore)]
   public struct MediaObject
   {
     public string name;
@@ -74,7 +67,6 @@ namespace WilderMinds.MetaWeblog
     public byte[] bits;
   }
 
-  [Serializable]
   public struct MediaObjectInfo
   {
     public string url;

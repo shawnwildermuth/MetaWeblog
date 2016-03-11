@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
+using System.Collections;
 
 namespace WilderMinds.MetaWeblog
 {
@@ -39,7 +40,8 @@ namespace WilderMinds.MetaWeblog
           var attr = typeMethod.GetCustomAttribute<XmlRpcMethodAttribute>();
           if (method.ToLower() == attr.MethodName.ToLower())
           {
-            var result = typeMethod.Invoke(this, new object[] { GetParameters(doc) });
+            var parameters = GetParameters(doc);
+            var result = typeMethod.Invoke(this, parameters);
             return SerializeResponse(result);
           }
         }
@@ -63,44 +65,75 @@ namespace WilderMinds.MetaWeblog
 
       SerializeResponseParameters(theParams, result);
 
-      return doc.ToString(SaveOptions.DisableFormatting)
+      return doc.ToString(SaveOptions.DisableFormatting);
     }
 
-    private void SerializeResponseParameters(XElement theParams, object result)
+    private XElement SerializeValue(object result)
     {
       var theType = result.GetType();
+      XElement newElement = new XElement("value");
 
       if (theType == typeof(int))
       {
-        theParams.Add(CreateParam("i4", result.ToString()));
+        newElement.Add(new XElement("i4", result.ToString()));
       }
       else if (theType == typeof(long))
       {
-        theParams.Add(CreateParam("long", result.ToString()));
+        newElement.Add(new XElement("long", result.ToString()));
       }
       else if (theType == typeof(double))
       {
-        theParams.Add(CreateParam("double", result.ToString()));
+        newElement.Add(new XElement("double", result.ToString()));
       }
       else if (theType == typeof(bool))
       {
-        theParams.Add(CreateParam("boolean", result.ToString()));
+        newElement.Add(new XElement("boolean", result.ToString()));
       }
       else if (theType == typeof(string))
       {
-        theParams.Add(CreateParam("string", result.ToString()));
+        newElement.Add(new XElement("string", result.ToString()));
       }
       else if (theType == typeof(DateTime))
       {
         var date = (DateTime)result;
-        theParams.Add(CreateParam("datetime.iso8601", date.ToString("yyyyMMdd'T'HH':'mm':'ss",
+        newElement.Add(new XElement("datetime.iso8601", date.ToString("yyyyMMdd'T'HH':'mm':'ss",
                         DateTimeFormatInfo.InvariantInfo)));
       }
+      else if (result is IEnumerable)
+      {
+        var data = new XElement("data");
+        foreach (var item in ((IEnumerable)result))
+        {
+          data.Add(SerializeValue(item));
+        }
+        newElement.Add(new XElement("array", data));
+      }
+      else
+      {
+        var theStruct = new XElement("struct");
+        // Reference Type
+        foreach (var field in theType.GetFields(BindingFlags.Public | BindingFlags.Instance))
+        {
+            var member = new XElement("member");
+            member.Add(new XElement("name", field.Name));
+            var value = field.GetValue(result);
+            member.Add(SerializeValue(value));
+            theStruct.Add(member);
+        }
+        newElement.Add(new XElement("struct", theStruct));
+      }
+
+      return newElement;
     }
 
-    private XElement CreateParam(string typeName, string value)
+    private void SerializeResponseParameters(XElement theParams, object result)
     {
-      return new XElement("param", new XElement(typeName, new XElement("value", value)));
+      theParams.Add(new XElement("param", SerializeValue(result)));
+    }
+
+    private XElement CreateStringValue(string typeName, string value)
+    {
+      return new XElement("value", new XElement(typeName, value));
     }
 
     private string SerializeFaultResponse(MetaWeblogException result)
@@ -108,7 +141,7 @@ namespace WilderMinds.MetaWeblog
       throw new MetaWeblogException("Not implemented");
     }
 
-    private object GetParameters(XDocument doc)
+    private object[] GetParameters(XDocument doc)
     {
       var parameters = new List<object>();
       var paramsEle = doc.Descendants("params");
@@ -121,7 +154,7 @@ namespace WilderMinds.MetaWeblog
 
       foreach (var p in paramsEle.Descendants("param"))
       {
-        parameters = Parse(p);
+        parameters.AddRange(Parse(p));
       }
 
       return parameters.ToArray();
@@ -205,7 +238,13 @@ namespace WilderMinds.MetaWeblog
 
     private List<object> ParseArray(XElement type)
     {
-      throw new NotImplementedException();
+      var result = new List<object>();
+      var data = type.Element("array").Element("data");
+      foreach (var ele in data.Elements())
+      {
+        result.AddRange(Parse(ele));
+      }
+      return result;
     }
   }
 }

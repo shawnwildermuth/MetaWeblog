@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.Logging;
-using XmlRpcLight;
 
 namespace WilderMinds.MetaWeblog
 {
