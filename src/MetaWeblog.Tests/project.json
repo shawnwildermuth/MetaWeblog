@@ -10,16 +10,15 @@
     "xunit": "2.1.0-*",
     "xunit.runner.dnx": "2.1.0-*",
     "MetaWeblog": "0.0.2-*",
-    "Microsoft.AspNet.TestHost": "1.0.0-rc1-final"
+    "Microsoft.AspNet.TestHost": "1.0.0-rc1-final",
+    "System.Xml.XDocument": "4.0.10-beta-23109"
   },
 
   "commands": {
     "test": "xunit.runner.dnx"
   },
   "frameworks": {
-    "dnx451": {
-      "dependencies": {
-      }
+    "dnxcore50": {
     }
   }
 }

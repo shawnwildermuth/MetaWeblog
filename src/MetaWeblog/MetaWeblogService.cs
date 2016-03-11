@@ -1,7 +1,4 @@
-﻿using XmlRpcLight;
-using XmlRpcLight.Attributes;
-
-namespace WilderMinds.MetaWeblog
+﻿namespace WilderMinds.MetaWeblog
 {
   public class MetaWeblogService : XmlRpcService
   {
