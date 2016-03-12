@@ -282,3 +282,6 @@ $RECYCLE.BIN/
 
 # ASP.NET Core
 .vs/**
+
+# Protected files
+*nuget.cmd
