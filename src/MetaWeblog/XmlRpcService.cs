@@ -12,58 +12,61 @@ namespace WilderMinds.MetaWeblog
   public class XmlRpcService
   {
 
-    // <?xml version="1.0"?>
-    // <methodCall>
-    //    <methodName>examples.getStateName</methodName>
-    //    <params>
-    //       <param>
-    //          <value><i4>41</i4></value>
-    //          </param>
-    //   </params>
-    //</methodCall>
-
     public string Invoke(string xml)
     {
-      var doc = XDocument.Parse(xml);
-      var methodNameElement = doc
-        .Descendants("methodName")
-        .FirstOrDefault();
-      if (methodNameElement != null)
+      try
       {
-        var method = methodNameElement.Value;
-
-        var theType = GetType();
-        var typeMethods = theType.GetMethods();
-
-        foreach (var typeMethod in typeMethods)
+        var doc = XDocument.Parse(xml);
+        var methodNameElement = doc
+          .Descendants("methodName")
+          .FirstOrDefault();
+        if (methodNameElement != null)
         {
-          var attr = typeMethod.GetCustomAttribute<XmlRpcMethodAttribute>();
-          if (method.ToLower() == attr.MethodName.ToLower())
+          var method = methodNameElement.Value;
+
+          var theType = GetType();
+
+          foreach (var typeMethod in theType.GetMethods())
           {
-            var parameters = GetParameters(doc);
-            var result = typeMethod.Invoke(this, parameters);
-            return SerializeResponse(result);
+            var attr = typeMethod.GetCustomAttribute<XmlRpcMethodAttribute>();
+            if (attr !=  null && method.ToLower() == attr.MethodName.ToLower())
+            {
+              var parameters = GetParameters(doc);
+              var result = typeMethod.Invoke(this, parameters);
+              return SerializeResponse(result);
+            }
           }
         }
       }
+      catch (MetaWeblogException ex)
+      {
+        return SerializeResponse(ex);
+      }
+      catch (Exception)
+      {
+        return SerializeResponse(new MetaWeblogException("Exception during XmlRpcService call"));
+      }
 
-      throw new MetaWeblogException("Failed to handle XmlRpcService call");
+      return SerializeResponse(new MetaWeblogException("Failed to handle XmlRpcService call"));
     }
 
     private string SerializeResponse(object result)
     {
-      if (result is MetaWeblogException)
-      {
-        return SerializeFaultResponse((MetaWeblogException)result);
-      }
-
       var doc = new XDocument();
       var response = new XElement("methodResponse");
       doc.Add(response);
-      var theParams = new XElement("params");
-      response.Add(theParams);
 
-      SerializeResponseParameters(theParams, result);
+      if (result is MetaWeblogException)
+      {
+        response.Add(SerializeFaultResponse((MetaWeblogException)result));
+      }
+      else
+      {
+        var theParams = new XElement("params");
+        response.Add(theParams);
+
+        SerializeResponseParameters(theParams, result);
+      }
 
       return doc.ToString(SaveOptions.DisableFormatting);
     }
@@ -114,11 +117,14 @@ namespace WilderMinds.MetaWeblog
         // Reference Type
         foreach (var field in theType.GetFields(BindingFlags.Public | BindingFlags.Instance))
         {
-            var member = new XElement("member");
-            member.Add(new XElement("name", field.Name));
-            var value = field.GetValue(result);
+          var member = new XElement("member");
+          member.Add(new XElement("name", field.Name));
+          var value = field.GetValue(result);
+          if (value != null)
+          {
             member.Add(SerializeValue(value));
             theStruct.Add(member);
+          }
         }
         newElement.Add(new XElement("struct", theStruct));
       }
@@ -136,9 +142,18 @@ namespace WilderMinds.MetaWeblog
       return new XElement("value", new XElement(typeName, value));
     }
 
-    private string SerializeFaultResponse(MetaWeblogException result)
+    private XElement SerializeFaultResponse(MetaWeblogException result)
     {
-      throw new MetaWeblogException("Not implemented");
+      return new XElement("fault",
+        new XElement("value",
+          new XElement("struct",
+            new XElement("member",
+              new XElement("name", "faultCode"),
+              CreateStringValue("int", result.Code.ToString())),
+            new XElement("member",
+              new XElement("name", "faultString"),
+              CreateStringValue("string", result.Message)))
+            ));
     }
 
     private object[] GetParameters(XDocument doc)

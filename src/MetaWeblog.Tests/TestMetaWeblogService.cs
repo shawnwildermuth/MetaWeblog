@@ -25,12 +25,24 @@ namespace MetaWeblog.Tests
 
     public CategoryInfo[] GetCategories(string blogid, string username, string password)
     {
-      throw new NotImplementedException();
+      return new CategoryInfo[]
+      {
+        new CategoryInfo() { categoryid = "1", title = "ASP.NET", htmlUrl = "/cats/aspnet" }
+      };
     }
 
     public Post GetPost(string postid, string username, string password)
     {
-      throw new NotImplementedException();
+      return new Post()
+      {
+        postid = 1,
+        dateCreated = DateTime.UtcNow,
+        description = "<p>This post is a long post</p>",
+        permalink = "/123",
+        title = "This is a post",
+        userid = "swildermuth",
+        categories = new string[] { "usda" }
+      };
     }
 
     public Post[] GetRecentPosts(string blogid, string username, string password, int numberOfPosts)

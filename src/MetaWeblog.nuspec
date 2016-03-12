@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>WilderMinds.MetaWeblog</id>
-    <version>0.0.2-beta</version>
+    <version>0.0.3-beta</version>
     <authors>Shawn Wildermuth</authors>
     <owners>Shawn Wildermuth</owners>
     <licenseUrl>https://github.com/shawnwildermuth/MetaWeblog/blob/master/LICENSE.md</licenseUrl>
@@ -17,11 +17,22 @@
         <dependency id="Microsoft.AspNet.Http.Abstractions" version="1.0.0-rc1-final" />
         <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="1.0.0-rc1-final" />
         <dependency id="Microsoft.Extensions.Logging.Abstractions" version="1.0.0-rc1-final" />
-        <dependency id="XmlRpcLight" version="1.0.0" />
+      </group>
+      <group targetFramework="DNXCore5.0">
+        <dependency id="System.Collections" version="4.0.11-rc2-23513" />
+        <dependency id="System.Reflection.Extensions" version="4.0.11-rc2-23513" />
+        <dependency id="System.Xml.XDocument" version="4.0.11-rc2-23516" />
       </group>
     </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="DNX4.5.1" />
+      <frameworkAssembly assemblyName="System" targetFramework="DNX4.5.1" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="DNX4.5.1" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="DNX4.5.1" />
+    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="artifacts\bin\MetaWeblog\release\dnx451\*.dll" target="lib\dnx451" /> 
+    <file src="artifacts\bin\MetaWeblog\release\dnxcore50\*.dll" target="lib\dnxcore50" /> 
   </files>
 </package>
