@@ -9,7 +9,7 @@
   "dependencies": {
     "xunit": "2.1.0-*",
     "xunit.runner.dnx": "2.1.0-*",
-    "MetaWeblog": "0.2.0-*",
+    "WilderMinds.MetaWeblog": "0.2.2-*",
     "Microsoft.AspNet.TestHost": "1.0.0-rc1-final",
     "System.Xml.XDocument": "4.0.10-beta-23109"
   },

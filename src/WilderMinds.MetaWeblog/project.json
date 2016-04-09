@@ -1,6 +1,6 @@
 ﻿{
-  "version": "0.2.0-beta",
-  "description": "WilderMinds.MetaWeblog",
+  "version": "0.2.2-*",
+  "description": "A MetaWeblog API implementation for ASP.NET 5 (DXCore and DNX451).",
   "authors": [ "shawn" ],
   "tags": [ "xmlrpc", "metablogapi", "blogs" ],
   "projectUrl": "http://github.com/shawnwildermuth/metaweblog",
