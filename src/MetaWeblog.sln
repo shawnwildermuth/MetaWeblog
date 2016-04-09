@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MetaWeblog", "MetaWeblog\MetaWeblog.xproj", "{E41F72F8-A593-4850-8280-D151FE7B8743}"
 EndProject
@@ -9,6 +9,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MetaWeblog.Tests", "MetaWeb
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{14517B62-DED6-4608-88BC-06964A2E7F4C}"
 	ProjectSection(SolutionItems) = preProject
+		MetaWeblog\global.json = MetaWeblog\global.json
 		MetaWeblog.nuspec = MetaWeblog.nuspec
 	EndProjectSection
 EndProject

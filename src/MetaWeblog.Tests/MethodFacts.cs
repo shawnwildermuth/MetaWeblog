@@ -63,6 +63,9 @@ namespace MetaWeblog.Tests
       var result = await IssueMethod(xml);
       Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
       Assert.True(result.Descendants("string").Any(s => s.Value == "Test Blog"), "Should contain name of test blog");
+      var blogid = result.Descendants("name").Where(x => x.Value == "blogid").FirstOrDefault();
+      Assert.NotNull(blogid);
+      Assert.True(blogid.Parent.Parent.Parent.Name.LocalName == "value");
     }
 
     [Fact]

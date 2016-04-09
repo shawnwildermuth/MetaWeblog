@@ -126,7 +126,7 @@ namespace WilderMinds.MetaWeblog
             theStruct.Add(member);
           }
         }
-        newElement.Add(new XElement("struct", theStruct));
+        newElement.Add(theStruct);
       }
 
       return newElement;
