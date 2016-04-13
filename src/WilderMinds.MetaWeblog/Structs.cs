@@ -2,20 +2,14 @@
 
 namespace WilderMinds.MetaWeblog
 {
-  public struct BlogInfo
+  public class BlogInfo
   {
     public string blogid;
     public string url;
     public string blogName;
   }
 
-  public struct Category
-  {
-    public string categoryId;
-    public string categoryName;
-  }
-
-  public struct CategoryInfo
+  public class CategoryInfo
   {
     public string description;
     public string htmlUrl;
@@ -24,14 +18,14 @@ namespace WilderMinds.MetaWeblog
     public string categoryid;
   }
 
-  public struct Enclosure
+  public class Enclosure
   {
     public int length;
     public string type;
     public string url;
   }
 
-  public struct Post
+  public class Post
   {
     public DateTime dateCreated;
     public string description;
@@ -44,13 +38,13 @@ namespace WilderMinds.MetaWeblog
   }
 
 
-  public struct Source
+  public class Source
   {
     public string name;
     public string url;
   }
 
-  public struct UserInfo
+  public class UserInfo
   {
     public string userid;
     public string firstname;
@@ -60,14 +54,14 @@ namespace WilderMinds.MetaWeblog
     public string url;
   }
 
-  public struct MediaObject
+  public class MediaObject
   {
-    public string name;
+    public string filename;
     public string type;
-    public byte[] bits;
+    public string bits;
   }
 
-  public struct MediaObjectInfo
+  public class MediaObjectInfo
   {
     public string url;
   }

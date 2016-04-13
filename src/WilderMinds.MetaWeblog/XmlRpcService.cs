@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
 using System.Collections;
+using System.Diagnostics;
 
 namespace WilderMinds.MetaWeblog
 {
   public class XmlRpcService
   {
+    private string _method;
 
     public string Invoke(string xml)
     {
@@ -22,14 +24,14 @@ namespace WilderMinds.MetaWeblog
           .FirstOrDefault();
         if (methodNameElement != null)
         {
-          var method = methodNameElement.Value;
+          _method = methodNameElement.Value;
 
           var theType = GetType();
 
           foreach (var typeMethod in theType.GetMethods())
           {
             var attr = typeMethod.GetCustomAttribute<XmlRpcMethodAttribute>();
-            if (attr !=  null && method.ToLower() == attr.MethodName.ToLower())
+            if (attr != null && _method.ToLower() == attr.MethodName.ToLower())
             {
               var parameters = GetParameters(doc);
               var result = typeMethod.Invoke(this, parameters);
@@ -169,15 +171,14 @@ namespace WilderMinds.MetaWeblog
 
       foreach (var p in paramsEle.Descendants("param"))
       {
-        parameters.AddRange(Parse(p));
+        parameters.AddRange(ParseValue(p.Element("value")));
       }
 
       return parameters.ToArray();
     }
 
-    private List<object> Parse(XElement param)
+    private List<object> ParseValue(XElement value)
     {
-      var value = param.Element("value");
       var type = value.Descendants().FirstOrDefault();
       if (type != null)
       {
@@ -248,18 +249,57 @@ namespace WilderMinds.MetaWeblog
 
     private List<object> ParseStruct(XElement type)
     {
-      throw new NotImplementedException();
+      var dict = new Dictionary<string, object>();
+      var members = type.Descendants("member");
+      foreach (var member in members)
+      {
+        var name = member.Element("name").Value;
+        var value = ParseValue(member.Element("value"));
+        dict[name] = value;
+      }
+
+      switch (_method)
+      {
+        case "metaWeblog.newMediaObject":
+          return ConvertToType<MediaObject>(dict);
+        case "metaWeblog.newPost":
+        case "metaWeblog.editPost":
+          return ConvertToType<Post>(dict);
+        default:
+          throw new InvalidOperationException("Unknown type of struct discovered.");
+      }
+
+    }
+
+    private List<object> ConvertToType<T>(Dictionary<string, object> dict) where T : new()
+    {
+      var info = typeof(T).GetTypeInfo();
+    
+      // Convert it
+      var result = new T();
+      foreach (var key in dict.Keys)
+      {
+        var field = info.GetDeclaredField(key);
+        if (field == null) throw new InvalidOperationException($"Failed to find the {key} property of {typeof(T).Name}");
+        var container = (List<object>)dict[key];
+        object value = container.Count() == 1 ? container.First() : container.ToArray();
+        field.SetValue(result, value);
+      }
+
+      Debug.WriteLine(result);
+
+      return new List<object>() { result };
     }
 
     private List<object> ParseArray(XElement type)
     {
       var result = new List<object>();
-      var data = type.Element("array").Element("data");
+      var data = type.Element("data");
       foreach (var ele in data.Elements())
       {
-        result.AddRange(Parse(ele));
+        result.AddRange(ParseValue(ele));
       }
-      return result;
+      return new List<object>() { result.Cast<string>().ToArray() }; // make an array;
     }
   }
 }

@@ -10,17 +10,17 @@ namespace MetaWeblog.Tests
   {
     public string AddPost(string blogid, string username, string password, Post post, bool publish)
     {
-      throw new NotImplementedException();
+      return "123";
     }
 
     public bool DeletePost(string key, string postid, string username, string password, bool publish)
     {
-      throw new NotImplementedException();
+      return true;
     }
 
     public bool EditPost(string postid, string username, string password, Post post, bool publish)
     {
-      throw new NotImplementedException();
+      return true;
     }
 
     public CategoryInfo[] GetCategories(string blogid, string username, string password)
@@ -76,7 +76,7 @@ namespace MetaWeblog.Tests
 
     public MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject)
     {
-      throw new NotImplementedException();
+      return new MediaObjectInfo();
     }
   }
 }
