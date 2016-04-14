@@ -306,8 +306,6 @@ namespace MetaWeblog.Tests
         var content = new StringContent(xml, Encoding.UTF8, "text/xml");
         var result = await server.CreateClient().PostAsync("/livewriter", content);
 
-        Assert.True(result.IsSuccessStatusCode, "Should return success");
-
         var doc = XDocument.Parse(await result.Content.ReadAsStringAsync());
 
         return doc;
