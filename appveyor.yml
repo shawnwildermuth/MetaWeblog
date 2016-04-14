@@ -22,8 +22,10 @@ before_build:
  - cmd: npm install gulp bower -g
 
 build_script:
- - cmd: dnu build ./src/WilderMinds.MetaWeblog.Tests
+ - cmd: dnu restore ./src/WilderMinds.MetaWeblog
+ - cmd: dnu restore ./src/WilderMinds.MetaWeblog.Tests
  - cmd: dnu build ./src/WilderMinds.MetaWeblog
+ - cmd: dnu build ./src/WilderMinds.MetaWeblog.Tests
 
 test_script:
  - ps: cd .\src\WilderMinds.MetaWeblog.Tests
