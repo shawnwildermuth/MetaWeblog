@@ -56,7 +56,7 @@ namespace WilderMinds.MetaWeblog
 
   public class MediaObject
   {
-    public string filename;
+    public string name;
     public string type;
     public string bits;
   }

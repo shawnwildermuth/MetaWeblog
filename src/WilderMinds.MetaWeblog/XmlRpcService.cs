@@ -202,12 +202,18 @@ namespace WilderMinds.MetaWeblog
             return ParseDouble(type);
           case "dateTime.iso8601":
             return ParseDateTime(type);
-
+          case "base64":
+            return ParseBase64(type);
         }
       }
 
       throw new MetaWeblogException("Failed to parse parameters");
 
+    }
+
+    private List<object> ParseBase64(XElement type)
+    {
+      return new List<object> { type.Value };
     }
 
     private List<object> ParseLong(XElement type)
