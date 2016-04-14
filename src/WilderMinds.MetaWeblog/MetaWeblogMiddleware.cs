@@ -32,7 +32,9 @@ namespace WilderMinds.MetaWeblog
       {
         var rdr = new StreamReader(context.Request.Body);
         var xml = rdr.ReadToEnd();
+        _logger.LogInformation($"Request XMLRPC: {xml}");
         var result = _service.Invoke(xml);
+        _logger.LogInformation($"Result XMLRPC: {result}");
         await context.Response.WriteAsync(result, Encoding.UTF8);
         context.Response.ContentType = "text/xml";
       }

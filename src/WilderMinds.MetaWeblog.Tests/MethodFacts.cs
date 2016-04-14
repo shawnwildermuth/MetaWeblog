@@ -179,47 +179,67 @@ namespace MetaWeblog.Tests
     {
       var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
-  <methodName>metaWeblog.newPost</methodName>
-  <params>
-    <param>
-      <value><string>MyBlog</string></value>
-    </param>
-    <param>
-      <value><string>USERNAME</string></value>
-    </param>
-    <param>
-      <value><string>SECRETWORD</string></value>
-    </param>
-    <param>
+ <methodName>metaWeblog.newPost</methodName>
+ <params>
+  <param>
+   <value>
+    <string>stw</string>
+   </value>
+  </param>
+  <param>
+   <value>
+    <string>shawnwildermuth</string>
+   </value>
+  </param>
+  <param>
+   <value>
+    <string>ABCDE</string>
+   </value>
+  </param>
+  <param>
+   <value>
+    <struct>
+     <member>
+      <name>title</name>
       <value>
-        <struct>
-          <member>
-            <name>categories</name>
-            <value>
-              <array>
-                <data>
-                  <value><string>Books</string></value>
-                </data>
-              </array>
-            </value>
-          </member>
-          <member>
-            <name>description</name>
-            <value>
-              <string>Hello World</string>
-            </value>
-          </member>
-          <member>
-            <name>title</name>
-            <value><string>Hello World Title</string></value>
-          </member>
-        </struct>
+       <string>Welcome to the New Wildermuth.com</string>
       </value>
-    </param>
-    <param>
-      <value><boolean>1</boolean></value>
-    </param>
-  </params>
+     </member>
+     <member>
+      <name>description</name>
+      <value>
+       <string>&lt;p&gt;&lt;a href=""https://wilderminds.blob.core.windows.net/img/javascript_2.jpg""&gt;&lt;img width=""244"" height=""184"" title=""javascript"" align=""right"" style=""float: right; display: inline; background-image: none;"" alt=""javascript"" src=""https://wilderminds.blob.core.windows.net/img/javascript_thumb.jpg"" border=""0""&gt;&lt;/a&gt;A while back, I decided that this blog deserved a clean coat of paint and since I’m digging into ASP.NET Core, it was logical to re-write it. I wanted more than just to change the look, I wanted to make some real changes to the code and finally open source the code too!&lt;/p&gt;&lt;p&gt;Open sourcing the code required that I do a few things. First of all, I had to change any code that I would be embarrassed by (not a trivial task), but also make it so that much of normal secrets weren’t exposed by open sourcing it (e.g. connection strings, etc.).&lt;/p&gt;</string>
+      </value>
+     </member>
+     <member>
+      <name>categories</name>
+      <value>
+       <array>
+        <data />
+       </array>
+      </value>
+     </member>
+     <member>
+      <name>dateCreated</name>
+      <value>
+       <dateTime.iso8601>20160414T08:19:00</dateTime.iso8601>
+      </value>
+     </member>
+     <member>
+      <name>date_created_gmt</name>
+      <value>
+       <dateTime.iso8601>20160414T08:19:00</dateTime.iso8601>
+      </value>
+     </member>
+    </struct>
+   </value>
+  </param>
+  <param>
+   <value>
+    <boolean>0</boolean>
+   </value>
+  </param>
+ </params>
 </methodCall>";
 
       var result = await IssueMethod(xml);

@@ -7,12 +7,19 @@ using System.IO;
 using System.Globalization;
 using System.Collections;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace WilderMinds.MetaWeblog
 {
   public class XmlRpcService
   {
+    public XmlRpcService(ILogger logger)
+    {
+      _logger = logger;
+    }
+
     private string _method;
+    private ILogger _logger;
 
     public string Invoke(string xml)
     {
@@ -25,6 +32,8 @@ namespace WilderMinds.MetaWeblog
         if (methodNameElement != null)
         {
           _method = methodNameElement.Value;
+
+          _logger.LogInformation($"Invoking {_method} on XMLRPC Service");
 
           var theType = GetType();
 
@@ -286,10 +295,16 @@ namespace WilderMinds.MetaWeblog
       foreach (var key in dict.Keys)
       {
         var field = info.GetDeclaredField(key);
-        if (field == null) throw new InvalidOperationException($"Failed to find the {key} property of {typeof(T).Name}");
-        var container = (List<object>)dict[key];
-        object value = container.Count() == 1 ? container.First() : container.ToArray();
-        field.SetValue(result, value);
+        if (field != null)
+        {
+          var container = (List<object>)dict[key];
+          object value = container.Count() == 1 ? container.First() : container.ToArray();
+          field.SetValue(result, value);
+        }
+        else
+        {
+          _logger.LogWarning($"Skipping field {key} when converting to {typeof(T).Name}");
+        }
       }
 
       Debug.WriteLine(result);
