@@ -13,6 +13,7 @@
     bool EditPost(string postid, string username, string password, Post post, bool publish);
 
     CategoryInfo[] GetCategories(string blogid, string username, string password);
+    int AddCategory(string key, string username, string password, NewCategory category);
 
     MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject);
   }

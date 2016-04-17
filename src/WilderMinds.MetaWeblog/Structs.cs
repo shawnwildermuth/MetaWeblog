@@ -18,6 +18,12 @@ namespace WilderMinds.MetaWeblog
     public string categoryid;
   }
 
+  public class NewCategory
+  {
+    public string name;
+    public int parent_id;
+  }
+
   public class Enclosure
   {
     public int length;

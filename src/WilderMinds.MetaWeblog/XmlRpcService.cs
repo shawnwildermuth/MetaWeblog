@@ -280,6 +280,8 @@ namespace WilderMinds.MetaWeblog
         case "metaWeblog.newPost":
         case "metaWeblog.editPost":
           return ConvertToType<Post>(dict);
+        case "wp.newCategory":
+          return ConvertToType<NewCategory>(dict);
         default:
           throw new InvalidOperationException("Unknown type of struct discovered.");
       }

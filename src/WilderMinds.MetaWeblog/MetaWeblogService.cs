@@ -27,6 +27,13 @@ namespace WilderMinds.MetaWeblog
       return _provider.GetUserInfo(key, username, password);
     }
 
+    [XmlRpcMethod("wp.newCategory")]
+    public int AddCategory(string key, string username, string password, NewCategory category)
+    {
+      _logger.LogInformation($"MetaWeblog:AddCategory is called");
+      return _provider.AddCategory(key, username, password, category);
+    }
+
     [XmlRpcMethod("metaWeblog.getPost")]
     public Post GetPost(string postid, string username, string password)
     {

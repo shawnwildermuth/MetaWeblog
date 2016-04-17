@@ -8,6 +8,11 @@ namespace MetaWeblog.Tests
 {
   public class TestMetaWeblogService : IMetaWeblogProvider
   {
+    public int AddCategory(string key, string username, string password, NewCategory category)
+    {
+      return 1;
+    }
+
     public string AddPost(string blogid, string username, string password, Post post, bool publish)
     {
       return "123";

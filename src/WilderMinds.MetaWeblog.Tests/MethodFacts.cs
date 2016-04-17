@@ -299,6 +299,53 @@ namespace MetaWeblog.Tests
       Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
     }
 
+    [Fact]
+    public async Task ShouldAddCategory()
+    {
+      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<methodCall>
+ <methodName>wp.newCategory</methodName>
+ <params>
+  <param>
+   <value>
+    <string>stw</string>
+   </value>
+  </param>
+  <param>
+   <value>
+    <string>shawnwildermuth</string>
+   </value>
+  </param>
+  <param>
+   <value>
+    <string>ABCDEF</string>
+   </value>
+  </param>
+  <param>
+   <value>
+    <struct>
+     <member>
+      <name>name</name>
+      <value>
+       <string>Entity Framework Core</string>
+      </value>
+     </member>
+     <member>
+      <name>parent_id</name>
+      <value>
+       <int>0</int>
+      </value>
+     </member>
+    </struct>
+   </value>
+  </param>
+ </params>
+</methodCall>";
+
+      var result = await IssueMethod(xml);
+      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+    }
+
     async Task<XDocument> IssueMethod(string xml)
     {
       using (var server = GetServer())
