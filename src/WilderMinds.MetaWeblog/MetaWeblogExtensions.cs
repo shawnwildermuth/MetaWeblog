@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.AspNet.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WilderMinds.MetaWeblog

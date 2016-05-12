@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.TestHost;
-using WilderMinds.MetaWeblog;
-using Microsoft.Extensions.DependencyInjection;
-using Xunit;
-using Microsoft.AspNet.Hosting;
+using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Net;
+using System.Threading.Tasks;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+using WilderMinds.MetaWeblog;
+using Xunit;
 
 namespace MetaWeblog.Tests
 {
@@ -19,13 +19,10 @@ namespace MetaWeblog.Tests
 
     TestServer GetServer()
     {
-      return TestServer.Create(app =>
-      {
-        app.UseMetaWeblog("/livewriter");
-      }, svcs =>
-      {
-        svcs.AddMetaWeblog<TestMetaWeblogService>();
-      });
+      var bldr = new WebHostBuilder()
+        .Configure(app => app.UseMetaWeblog("/livewriter"))
+        .ConfigureServices( svcs => svcs.AddMetaWeblog<TestMetaWeblogService>());
+      return new TestServer(bldr);
     }
 
     [Fact]
