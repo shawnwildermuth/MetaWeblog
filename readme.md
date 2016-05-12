@@ -101,5 +101,3 @@ waiting for the MetaWeblog calls:
 
 This simply handles the routing to your methods. It does not implement the service at all. 
 
-NOTE: This project does not support .NET Core yet as the dependency on XmlRpcLight is only 
-.NET 4.5.x currently but I'm looking for options or PRs that can help support both.
