@@ -8,13 +8,16 @@
   },
 
   "dependencies": {
+    "Microsoft.NETCore.App": {
+      "version": "1.0.0-rc2-*",
+      "type": "platform"
+    },
     "xunit": "2.1.0",
     "dotnet-test-xunit": "1.0.0-rc2-build10025",
     "Microsoft.AspNetCore.TestHost": "1.0.0-rc2-*",
     "System.Xml.XDocument": "4.0.11-rc2-*",
     "WilderMinds.MetaWeblog": {
-      "target": "project" 
-
+      "target": "project"
     }
   },
 
@@ -23,15 +26,10 @@
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [
+        "dotnet5.6",
         "dnxcore50",
         "portable-net45+win8"
-      ],
-      "dependencies": {
-        "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.0.0-rc2-3002702"
-        }
-      }
+      ]
     }
   }
 }
