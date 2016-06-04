@@ -1,26 +1,35 @@
 ﻿{
-  "version": "0.4.0-beta-*",
-  "description": "A MetaWeblog API implementation for ASP.NET 5 (DXCore and DNX451).",
+  "version": "1.0.0-rc2-*",
+  "description": "A MetaWeblog API implementation for ASP.NET Core.",
   "authors": [ "shawn" ],
-  "tags": [ "xmlrpc", "metablogapi", "blogs" ],
-  "projectUrl": "http://github.com/shawnwildermuth/metaweblog",
-  "licenseUrl": "",
+  "packOptions": {
+    "tags": [ "xmlrpc", "metablogapi", "blogs" ],
+    "projectUrl": "http://github.com/shawnwildermuth/metaweblog",
+    "licenseUrl": "",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/shawnwildermuth/metaweblog"
+    }
+  },
+  "buildOptions": {
+    "warningsAsErrors": true,
+    "xmlDoc": false
+  },
 
   "dependencies": {
-    "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
-    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final"
+    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0-rc2-*",
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-*",
+    "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-*"
   },
 
   "frameworks": {
-    "dnx451": {
-      "frameworkAssemblies": { "System.Xml.Linq": "4.0.0.0" }
-    },
-    "dnxcore50": {
+    "netstandard1.3": {
+      "imports": [ "portable-net452+win81" ],
       "dependencies": {
-        "System.Collections": "4.0.11-beta-23509",
-        "System.Reflection.Extensions": "4.0.1-beta-23516",
-        "System.Xml.XDocument": "4.0.11-beta-23516"
+        "System.Collections": "4.0.11-rc2-*",
+        "System.Reflection.Extensions": "4.0.1-rc2-*",
+        "System.Xml.XDocument": "4.0.11-rc2-*",
+        "System.Text.RegularExpressions": "4.0.12-rc2-*"
       }
     }
   }
