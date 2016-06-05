@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:6917/",
+      "applicationUrl": "http://localhost:7620/",
       "sslPort": 0
     }
   },
@@ -14,6 +14,10 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "test": {
+      "commandName": "test",
+      "sdkVersion": "dnx-coreclr-win-x64.1.0.0-rc1-update1"
     }
   }
 }
