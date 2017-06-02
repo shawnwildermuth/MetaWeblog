@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WilderMinds.MetaWeblogAPI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A library for interacting with MetaWeblog-based authoring systems like Open Livewriter.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Wilder Minds LLC")]
 [assembly: AssemblyProduct("WilderMinds.MetaWeblogAPI")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
