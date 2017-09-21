@@ -64,6 +64,11 @@ To support MetaWeblog, you must first create a class that implements the IMetaWe
     {
       // TODO
     }
+
+    public int AddCategory(string key, string username, string password, NewCategory category)
+    {
+      // TODO
+    }
   }
 ```
 
