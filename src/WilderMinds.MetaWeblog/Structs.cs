@@ -22,6 +22,8 @@ namespace WilderMinds.MetaWeblog
   {
     public string name;
     public int parent_id;
+    public string slug;
+    public string description;
   }
 
   public class Enclosure
