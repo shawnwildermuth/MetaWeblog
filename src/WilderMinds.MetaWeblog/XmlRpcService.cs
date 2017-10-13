@@ -53,9 +53,10 @@ namespace WilderMinds.MetaWeblog
       {
         return SerializeResponse(ex);
       }
-      catch (Exception)
+      catch (Exception ex)
       {
-        return SerializeResponse(new MetaWeblogException("Exception during XmlRpcService call"));
+        _logger.LogError($"Exception thrown during serialization: Exception: {ex}");
+        return SerializeResponse(new MetaWeblogException($"Exception during XmlRpcService call: {ex.Message}"));
       }
 
       return SerializeResponse(new MetaWeblogException("Failed to handle XmlRpcService call"));
@@ -301,6 +302,25 @@ namespace WilderMinds.MetaWeblog
         {
           var container = (List<object>)dict[key];
           object value = container.Count() == 1 ? container.First() : container.ToArray();
+          if (field.FieldType != value.GetType())
+          {
+            if (field.FieldType.IsArray && value.GetType().IsArray)
+            {
+              var valueArray = (Array)value;
+              var newValue = Array.CreateInstance(field.FieldType.GetElementType(), valueArray.Length);
+              Array.Copy(valueArray, newValue, valueArray.Length);
+              value = newValue;
+            }
+            else if (value.GetType().IsAssignableFrom(field.FieldType))
+            {
+              value = Convert.ChangeType(value, field.FieldType);
+            }
+            else
+            {
+              _logger.LogWarning($"Skipping conversion to type as not supported: {field.FieldType.Name}");
+              continue;
+            }
+          }
           field.SetValue(result, value);
         }
         else
@@ -316,13 +336,21 @@ namespace WilderMinds.MetaWeblog
 
     private List<object> ParseArray(XElement type)
     {
-      var result = new List<object>();
-      var data = type.Element("data");
-      foreach (var ele in data.Elements())
+      try
       {
-        result.AddRange(ParseValue(ele));
+        var result = new List<object>();
+        var data = type.Element("data");
+        foreach (var ele in data.Elements())
+        {
+          result.AddRange(ParseValue(ele));
+        }
+        return new List<object>() { result.ToArray() }; // make an array;
       }
-      return new List<object>() { result.Cast<string>().ToArray() }; // make an array;
+      catch (Exception ex)
+      {
+        _logger.LogCritical($"Failed to Parse Array: {type}");
+        throw ex;
+      }
     }
   }
 }
