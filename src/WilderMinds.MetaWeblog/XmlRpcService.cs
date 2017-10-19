@@ -102,7 +102,7 @@ namespace WilderMinds.MetaWeblog
       }
       else if (theType == typeof(bool))
       {
-        newElement.Add(new XElement("boolean", result.ToString()));
+        newElement.Add(new XElement("boolean", ((bool)result) ? 1 : 0));
       }
       else if (theType == typeof(string))
       {
