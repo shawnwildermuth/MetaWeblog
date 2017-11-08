@@ -80,7 +80,7 @@ namespace WilderMinds.MetaWeblog
         SerializeResponseParameters(theParams, result);
       }
 
-      return doc.ToString(SaveOptions.DisableFormatting);
+      return doc.ToString(SaveOptions.None);
     }
 
     private XElement SerializeValue(object result)
@@ -111,7 +111,7 @@ namespace WilderMinds.MetaWeblog
       else if (theType == typeof(DateTime))
       {
         var date = (DateTime)result;
-        newElement.Add(new XElement("datetime.iso8601", date.ToString("yyyyMMdd'T'HH':'mm':'ss",
+        newElement.Add(new XElement("dateTime.iso8601", date.ToString("yyyyMMdd'T'HH':'mm':'ss",
                         DateTimeFormatInfo.InvariantInfo)));
       }
       else if (result is IEnumerable)

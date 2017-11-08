@@ -43,8 +43,9 @@ namespace WilderMinds.MetaWeblog
     public object postid;
     public string userid;
     public string wp_slug;
+    public string mt_excerpt;
+    public string link;
   }
-
 
   public class Source
   {
