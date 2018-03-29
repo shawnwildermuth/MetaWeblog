@@ -283,6 +283,9 @@ namespace WilderMinds.MetaWeblog
           return ConvertToType<Post>(dict);
         case "wp.newCategory":
           return ConvertToType<NewCategory>(dict);
+        case "wp.newPage":
+        case "wp.editPage":
+          return ConvertToType<Page>(dict);
         default:
           throw new InvalidOperationException("Unknown type of struct discovered.");
       }

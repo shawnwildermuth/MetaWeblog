@@ -16,5 +16,12 @@
     int AddCategory(string key, string username, string password, NewCategory category);
 
     MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject);
+
+    Page GetPage(string blogid, string pageid, string username, string password);
+    Page[] GetPages(string blogid, string username, string password, int numPages);
+
+    string AddPage(string blogid, string username, string password, Page page, bool publish);
+    bool EditPage(string blogid, string pageid, string username, string password, Page page, bool publish);
+    bool DeletePage(string blogid, string username, string password, string pageid);
   }
 }

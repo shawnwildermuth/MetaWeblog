@@ -83,5 +83,37 @@ namespace MetaWeblog.Tests
     {
       return new MediaObjectInfo();
     }
+
+    public Page GetPage(string blogid, string pageid, string username, string password)
+    {
+      return new Page()
+      {
+        page_id = "1",
+        dateCreated = DateTime.UtcNow,
+        description = "<p>This page is a long page</p>",
+        title = "This is a page",
+        categories = new string[] { "usda" }
+      };
+    }
+
+    public Page[] GetPages(string blogid, string username, string password, int numPages)
+    {
+      throw new NotImplementedException();
+    }
+
+    public string AddPage(string blogid, string username, string password, Page page, bool publish)
+    {
+      return "123";
+    }
+
+    public bool EditPage(string blogid, string pageid, string username, string password, Page page, bool publish)
+    {
+      return true;
+    }
+
+    public bool DeletePage(string blogid, string username, string password, string pageid)
+    {
+      return true;
+    }
   }
 }

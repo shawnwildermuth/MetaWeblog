@@ -82,5 +82,40 @@ namespace WilderMinds.MetaWeblog
       _logger.LogInformation($"MetaWeblog:NewMediaObject is called");
       return _provider.NewMediaObject(blogid, username, password, mediaObject);
     }
+
+    [XmlRpcMethod("wp.getPage")]
+    public Page GetPage(string blogid, string pageid, string username, string password)
+    {
+      _logger.LogInformation($"wp.getPage is called");
+      return _provider.GetPage(blogid, pageid, username, password);
+    }
+
+    [XmlRpcMethod("wp.getPages")]
+    public Page[] GetPages(string blogid, string username, string password, int numPages)
+    {
+      _logger.LogInformation($"wp.getPages is called");
+      return _provider.GetPages(blogid, username, password, numPages);
+    }
+
+    [XmlRpcMethod("wp.newPage")]
+    public string AddPage(string blogid, string username, string password, Page page, bool publish)
+    {
+      _logger.LogInformation($"wp.newPage is called");
+      return _provider.AddPage(blogid, username, password, page, publish);
+    }
+
+    [XmlRpcMethod("wp.editPage")]
+    public bool EditPage(string blogid, string pageid, string username, string password, Page page, bool publish)
+    {
+      _logger.LogInformation($"wp.editPage is called");
+      return _provider.EditPage(blogid, pageid, username, password, page, publish);
+    }
+
+    [XmlRpcMethod("wp.deletePage")]
+    public bool DeletePage(string blogid, string username, string password, string pageid)
+    {
+      _logger.LogInformation($"wp.deletePage is called");
+      return _provider.DeletePage(blogid, username, password, pageid);
+    }
   }
 }

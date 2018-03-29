@@ -75,4 +75,12 @@ namespace WilderMinds.MetaWeblog
     public string url;
   }
 
+  public class Page
+  {
+    public DateTime dateCreated;
+    public string description;
+    public string title;
+    public string[] categories;
+    public string page_id;
+  }
 }
