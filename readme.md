@@ -19,55 +19,77 @@ To support MetaWeblog, you must first create a class that implements the IMetaWe
   {
     public UserInfo GetUserInfo(string key, string username, string password)
     {
-      // TODO
+      throw new NotImplementedException();
     }
 
     public BlogInfo[] GetUsersBlogs(string key, string username, string password)
     {
-      // TODO
+      throw new NotImplementedException();
     }
-
 
     public Post GetPost(string postid, string username, string password)
     {
-      // TODO
+      throw new NotImplementedException();
     }
 
     public Post[] GetRecentPosts(string blogid, string username, string password, int numberOfPosts)
     {
-      // TODO
+      throw new NotImplementedException();
     }
-
 
     public string AddPost(string blogid, string username, string password, Post post, bool publish)
     {
-      // TODO
+      throw new NotImplementedException();
     }
 
     public bool DeletePost(string key, string postid, string username, string password, bool publish)
     {
-      // TODO
+      throw new NotImplementedException();
     }
 
     public bool EditPost(string postid, string username, string password, Post post, bool publish)
     {
-      // TODO
+      throw new NotImplementedException();
     }
-
 
     public CategoryInfo[] GetCategories(string blogid, string username, string password)
     {
-      // TODO
+      throw new NotImplementedException();
     }
 
     public MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject)
     {
-      // TODO
+      throw new NotImplementedException();
     }
 
     public int AddCategory(string key, string username, string password, NewCategory category)
     {
-      // TODO
+      throw new NotImplementedException();
+    }
+
+    public Page GetPage(string blogid, string pageid, string username, string password)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Page[] GetPages(string blogid, string username, string password, int numPages)
+    {
+      throw new NotImplementedException();
+    }
+
+    public string AddPage(string blogid, string username, string password, Page page, bool publish)
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool EditPage(string blogid, string pageid, string username, string password, Page page, bool publish)
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool DeletePage(string blogid, string username, string password, string pageid)
+    {
+      throw new NotImplementedException();
     }
   }
 ```
@@ -80,7 +102,7 @@ ConfigureServices supplying the name of the implemented service class:
       //...
 
       // Supporting Live Writer (MetaWeblogAPI)
-      svcs.AddMetaWeblog<TestWeblogService>();
+      svcs.AddMetaWeblog<TestMetaWeblogService>();
 
       //...
     }
