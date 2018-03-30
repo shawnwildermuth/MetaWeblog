@@ -77,6 +77,11 @@ To support MetaWeblog, you must first create a class that implements the IMetaWe
       throw new NotImplementedException();
     }
 
+    public Author[] GetAuthors(string blogid, string username, string password)
+    {
+      throw new NotImplementedException();
+    }
+
     public string AddPage(string blogid, string username, string password, Page page, bool publish)
     {
       throw new NotImplementedException();
