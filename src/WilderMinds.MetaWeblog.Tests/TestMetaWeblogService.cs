@@ -101,6 +101,11 @@ namespace MetaWeblog.Tests
       throw new NotImplementedException();
     }
 
+    public Author[] GetAuthors(string blogid, string username, string password)
+    {
+      throw new NotImplementedException();
+    }
+
     public string AddPage(string blogid, string username, string password, Page page, bool publish)
     {
       return "123";

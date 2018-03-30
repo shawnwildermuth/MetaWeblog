@@ -97,6 +97,13 @@ namespace WilderMinds.MetaWeblog
       return _provider.GetPages(blogid, username, password, numPages);
     }
 
+    [XmlRpcMethod("wp.getAuthors")]
+    public Author[] GetAuthors(string blogid, string username, string password)
+    {
+      _logger.LogInformation($"wp.getAuthors is called");
+      return _provider.GetAuthors(blogid, username, password);
+    }
+
     [XmlRpcMethod("wp.newPage")]
     public string AddPage(string blogid, string username, string password, Page page, bool publish)
     {

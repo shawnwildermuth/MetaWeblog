@@ -19,6 +19,7 @@
 
     Page GetPage(string blogid, string pageid, string username, string password);
     Page[] GetPages(string blogid, string username, string password, int numPages);
+    Author[] GetAuthors(string blogid, string username, string password);
 
     string AddPage(string blogid, string username, string password, Page page, bool publish);
     bool EditPage(string blogid, string pageid, string username, string password, Page page, bool publish);

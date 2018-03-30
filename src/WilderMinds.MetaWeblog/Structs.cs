@@ -81,6 +81,15 @@ namespace WilderMinds.MetaWeblog
     public string description;
     public string title;
     public string[] categories;
+    public string wp_author_id;
     public string page_id;
+  }
+
+  public class Author
+  {
+    public string user_id;
+    public string user_login;
+    public string display_name;
+    public string meta_value;
   }
 }
