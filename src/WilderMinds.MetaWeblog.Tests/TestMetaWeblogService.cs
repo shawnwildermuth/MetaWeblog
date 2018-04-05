@@ -8,37 +8,37 @@ namespace MetaWeblog.Tests
 {
   public class TestMetaWeblogService : IMetaWeblogProvider
   {
-    public int AddCategory(string key, string username, string password, NewCategory category)
+    public Task<int> AddCategoryAsync(string key, string username, string password, NewCategory category)
     {
-      return 1;
+      return Task.FromResult(1);
     }
 
-    public string AddPost(string blogid, string username, string password, Post post, bool publish)
+    public Task<string> AddPostAsync(string blogid, string username, string password, Post post, bool publish)
     {
-      return "123";
+      return Task.FromResult("123");
     }
 
-    public bool DeletePost(string key, string postid, string username, string password, bool publish)
+    public Task<bool> DeletePostAsync(string key, string postid, string username, string password, bool publish)
     {
-      return true;
+      return Task.FromResult(true);
     }
 
-    public bool EditPost(string postid, string username, string password, Post post, bool publish)
+    public Task<bool> EditPostAsync(string postid, string username, string password, Post post, bool publish)
     {
-      return true;
+      return Task.FromResult(true);
     }
 
-    public CategoryInfo[] GetCategories(string blogid, string username, string password)
+    public Task<CategoryInfo[]> GetCategoriesAsync(string blogid, string username, string password)
     {
-      return new CategoryInfo[]
+      return Task.FromResult(new CategoryInfo[]
       {
         new CategoryInfo() { categoryid = "1", title = "ASP.NET", htmlUrl = "/cats/aspnet" }
-      };
+      });
     }
 
-    public Post GetPost(string postid, string username, string password)
+    public Task<Post> GetPostAsync(string postid, string username, string password)
     {
-      return new Post()
+      return Task.FromResult(new Post()
       {
         postid = 1,
         dateCreated = DateTime.UtcNow,
@@ -47,28 +47,28 @@ namespace MetaWeblog.Tests
         title = "This is a post",
         userid = "swildermuth",
         categories = new string[] { "usda" }
-      };
+      });
     }
 
-    public Post[] GetRecentPosts(string blogid, string username, string password, int numberOfPosts)
+    public Task<Post[]> GetRecentPostsAsync(string blogid, string username, string password, int numberOfPosts)
     {
       throw new NotImplementedException();
     }
 
-    public UserInfo GetUserInfo(string key, string username, string password)
+    public Task<UserInfo> GetUserInfoAsync(string key, string username, string password)
     {
-      return new UserInfo()
+      return Task.FromResult(new UserInfo()
       {
         firstname = "Shawn",
         lastname = "Wildermuth",
         email = "me@us.com",
         userid = "1"
-      };
+      });
     }
 
-    public BlogInfo[] GetUsersBlogs(string key, string username, string password)
+    public Task<BlogInfo[]> GetUsersBlogsAsync(string key, string username, string password)
     {
-      return new BlogInfo[]
+      return Task.FromResult(new BlogInfo[]
       {
         new BlogInfo()
         {
@@ -76,12 +76,12 @@ namespace MetaWeblog.Tests
           blogName = "Test Blog",
           url = "http://foo.com"
         }
-      };
+      });
     }
 
-    public MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject)
+    public Task<MediaObjectInfo> NewMediaObjectAsync(string blogid, string username, string password, MediaObject mediaObject)
     {
-      return new MediaObjectInfo();
+      return Task.FromResult(new MediaObjectInfo());
     }
   }
 }

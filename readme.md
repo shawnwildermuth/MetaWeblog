@@ -17,55 +17,55 @@ To support MetaWeblog, you must first create a class that implements the IMetaWe
 ```C#
   public class TestMetaWeblogService : IMetaWeblogProvider
   {
-    public UserInfo GetUserInfo(string key, string username, string password)
+    public async Task<UserInfo> GetUserInfoAsync(string key, string username, string password)
     {
       // TODO
     }
 
-    public BlogInfo[] GetUsersBlogs(string key, string username, string password)
-    {
-      // TODO
-    }
-
-
-    public Post GetPost(string postid, string username, string password)
-    {
-      // TODO
-    }
-
-    public Post[] GetRecentPosts(string blogid, string username, string password, int numberOfPosts)
+    public async Task<BlogInfo[]> GetUsersBlogsAsync(string key, string username, string password)
     {
       // TODO
     }
 
 
-    public string AddPost(string blogid, string username, string password, Post post, bool publish)
+    public async Task<Post> GetPostAsync(string postid, string username, string password)
     {
       // TODO
     }
 
-    public bool DeletePost(string key, string postid, string username, string password, bool publish)
-    {
-      // TODO
-    }
-
-    public bool EditPost(string postid, string username, string password, Post post, bool publish)
+    public async Task<Post[]> GetRecentPostsAsync(string blogid, string username, string password, int numberOfPosts)
     {
       // TODO
     }
 
 
-    public CategoryInfo[] GetCategories(string blogid, string username, string password)
+    public async Task<string> AddPostAsync(string blogid, string username, string password, Post post, bool publish)
     {
       // TODO
     }
 
-    public MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject)
+    public async Task<bool> DeletePostAsync(string key, string postid, string username, string password, bool publish)
     {
       // TODO
     }
 
-    public int AddCategory(string key, string username, string password, NewCategory category)
+    public async Task<bool> EditPostAsync(string postid, string username, string password, Post post, bool publish)
+    {
+      // TODO
+    }
+
+
+    public async Task<CategoryInfo[]> GetCategoriesAsync(string blogid, string username, string password)
+    {
+      // TODO
+    }
+
+    public async Task<MediaObjectInfo> NewMediaObjectAsync(string blogid, string username, string password, MediaObject mediaObject)
+    {
+      // TODO
+    }
+
+    public async Task<int> AddCategoryAsync(string key, string username, string password, NewCategory category)
     {
       // TODO
     }
