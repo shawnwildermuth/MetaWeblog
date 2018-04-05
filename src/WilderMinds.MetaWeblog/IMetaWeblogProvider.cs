@@ -24,12 +24,12 @@ namespace WilderMinds.MetaWeblog
 
     Task<MediaObjectInfo> NewMediaObjectAsync(string blogid, string username, string password, MediaObject mediaObject);
 
-    Page GetPage(string blogid, string pageid, string username, string password);
-    Page[] GetPages(string blogid, string username, string password, int numPages);
-    Author[] GetAuthors(string blogid, string username, string password);
+    Task<Page> GetPageAsync(string blogid, string pageid, string username, string password);
+    Task<Page[]> GetPagesAsync(string blogid, string username, string password, int numPages);
+    Task<Author[]> GetAuthorsAsync(string blogid, string username, string password);
 
-    string AddPage(string blogid, string username, string password, Page page, bool publish);
-    bool EditPage(string blogid, string pageid, string username, string password, Page page, bool publish);
-    bool DeletePage(string blogid, string username, string password, string pageid);
+    Task<string> AddPageAsync(string blogid, string username, string password, Page page, bool publish);
+    Task<bool> EditPageAsync(string blogid, string pageid, string username, string password, Page page, bool publish);
+    Task<bool> DeletePageAsync(string blogid, string username, string password, string pageid);
   }
 }

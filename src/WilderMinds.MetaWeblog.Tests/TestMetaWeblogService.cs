@@ -84,41 +84,41 @@ namespace MetaWeblog.Tests
       return Task.FromResult(new MediaObjectInfo());
     }
 
-    public Page GetPage(string blogid, string pageid, string username, string password)
+    public Task<Page> GetPageAsync(string blogid, string pageid, string username, string password)
     {
-      return new Page()
+      return Task.FromResult(new Page()
       {
         page_id = "1",
         dateCreated = DateTime.UtcNow,
         description = "<p>This page is a long page</p>",
         title = "This is a page",
         categories = new string[] { "usda" }
-      };
+      });
     }
 
-    public Page[] GetPages(string blogid, string username, string password, int numPages)
+    public Task<Page[]> GetPagesAsync(string blogid, string username, string password, int numPages)
     {
       throw new NotImplementedException();
     }
 
-    public Author[] GetAuthors(string blogid, string username, string password)
+    public Task<Author[]> GetAuthorsAsync(string blogid, string username, string password)
     {
       throw new NotImplementedException();
     }
 
-    public string AddPage(string blogid, string username, string password, Page page, bool publish)
+    public Task<string> AddPageAsync(string blogid, string username, string password, Page page, bool publish)
     {
-      return "123";
+      return Task.FromResult("123");
     }
 
-    public bool EditPage(string blogid, string pageid, string username, string password, Page page, bool publish)
+    public Task<bool> EditPageAsync(string blogid, string pageid, string username, string password, Page page, bool publish)
     {
-      return true;
+      return Task.FromResult(true);
     }
 
-    public bool DeletePage(string blogid, string username, string password, string pageid)
+    public Task<bool> DeletePageAsync(string blogid, string username, string password, string pageid)
     {
-      return true;
+      return Task.FromResult(true);
     }
   }
 }

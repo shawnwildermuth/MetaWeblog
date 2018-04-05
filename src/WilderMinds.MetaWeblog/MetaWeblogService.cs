@@ -85,45 +85,45 @@ namespace WilderMinds.MetaWeblog
     }
 
     [XmlRpcMethod("wp.getPage")]
-    public Page GetPage(string blogid, string pageid, string username, string password)
+    public async Task<Page> GetPageAsync(string blogid, string pageid, string username, string password)
     {
       _logger.LogInformation($"wp.getPage is called");
-      return _provider.GetPage(blogid, pageid, username, password);
+      return await _provider.GetPageAsync(blogid, pageid, username, password);
     }
 
     [XmlRpcMethod("wp.getPages")]
-    public Page[] GetPages(string blogid, string username, string password, int numPages)
+    public async Task<Page[]> GetPagesAsync(string blogid, string username, string password, int numPages)
     {
       _logger.LogInformation($"wp.getPages is called");
-      return _provider.GetPages(blogid, username, password, numPages);
+      return await _provider.GetPagesAsync(blogid, username, password, numPages);
     }
 
     [XmlRpcMethod("wp.getAuthors")]
-    public Author[] GetAuthors(string blogid, string username, string password)
+    public async Task<Author[]> GetAuthorsAsync(string blogid, string username, string password)
     {
       _logger.LogInformation($"wp.getAuthors is called");
-      return _provider.GetAuthors(blogid, username, password);
+      return await _provider.GetAuthorsAsync(blogid, username, password);
     }
 
     [XmlRpcMethod("wp.newPage")]
-    public string AddPage(string blogid, string username, string password, Page page, bool publish)
+    public async Task<string> AddPageAsync(string blogid, string username, string password, Page page, bool publish)
     {
       _logger.LogInformation($"wp.newPage is called");
-      return _provider.AddPage(blogid, username, password, page, publish);
+      return await _provider.AddPageAsync(blogid, username, password, page, publish);
     }
 
     [XmlRpcMethod("wp.editPage")]
-    public bool EditPage(string blogid, string pageid, string username, string password, Page page, bool publish)
+    public async Task<bool> EditPageAsync(string blogid, string pageid, string username, string password, Page page, bool publish)
     {
       _logger.LogInformation($"wp.editPage is called");
-      return _provider.EditPage(blogid, pageid, username, password, page, publish);
+      return await _provider.EditPageAsync(blogid, pageid, username, password, page, publish);
     }
 
     [XmlRpcMethod("wp.deletePage")]
-    public bool DeletePage(string blogid, string username, string password, string pageid)
+    public async Task<bool> DeletePageAsync(string blogid, string username, string password, string pageid)
     {
       _logger.LogInformation($"wp.deletePage is called");
-      return _provider.DeletePage(blogid, username, password, pageid);
+      return await _provider.DeletePageAsync(blogid, username, password, pageid);
     }
   }
 }
