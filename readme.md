@@ -17,52 +17,55 @@ To support MetaWeblog, you must first create a class that implements the IMetaWe
 ```C#
   public class TestMetaWeblogService : IMetaWeblogProvider
   {
-    public UserInfo GetUserInfo(string key, string username, string password)
+    public async Task<UserInfo> GetUserInfoAsync(string key, string username, string password)
     {
       throw new NotImplementedException();
     }
 
-    public BlogInfo[] GetUsersBlogs(string key, string username, string password)
+    public async Task<BlogInfo[]> GetUsersBlogsAsync(string key, string username, string password)
     {
       throw new NotImplementedException();
     }
 
-    public Post GetPost(string postid, string username, string password)
+
+    public async Task<Post> GetPostAsync(string postid, string username, string password)
     {
       throw new NotImplementedException();
     }
 
-    public Post[] GetRecentPosts(string blogid, string username, string password, int numberOfPosts)
+    public async Task<Post[]> GetRecentPostsAsync(string blogid, string username, string password, int numberOfPosts)
     {
       throw new NotImplementedException();
     }
 
-    public string AddPost(string blogid, string username, string password, Post post, bool publish)
+
+    public async Task<string> AddPostAsync(string blogid, string username, string password, Post post, bool publish)
     {
       throw new NotImplementedException();
     }
 
-    public bool DeletePost(string key, string postid, string username, string password, bool publish)
+    public async Task<bool> DeletePostAsync(string key, string postid, string username, string password, bool publish)
     {
       throw new NotImplementedException();
     }
 
-    public bool EditPost(string postid, string username, string password, Post post, bool publish)
+    public async Task<bool> EditPostAsync(string postid, string username, string password, Post post, bool publish)
     {
       throw new NotImplementedException();
     }
 
-    public CategoryInfo[] GetCategories(string blogid, string username, string password)
+
+    public async Task<CategoryInfo[]> GetCategoriesAsync(string blogid, string username, string password)
     {
       throw new NotImplementedException();
     }
 
-    public MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject)
+    public async Task<MediaObjectInfo> NewMediaObjectAsync(string blogid, string username, string password, MediaObject mediaObject)
     {
       throw new NotImplementedException();
     }
 
-    public int AddCategory(string key, string username, string password, NewCategory category)
+    public async Task<int> AddCategoryAsync(string key, string username, string password, NewCategory category)
     {
       throw new NotImplementedException();
     }

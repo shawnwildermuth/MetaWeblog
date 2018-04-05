@@ -1,21 +1,28 @@
-﻿namespace WilderMinds.MetaWeblog
+﻿using System.Threading.Tasks;
+
+namespace WilderMinds.MetaWeblog
 {
   public interface IMetaWeblogProvider
   {
-    UserInfo GetUserInfo(string key, string username, string password);
-    BlogInfo[] GetUsersBlogs(string key, string username, string password);
+    Task<UserInfo> GetUserInfoAsync(string key, string username, string password);
 
-    Post GetPost(string postid, string username, string password);
-    Post[] GetRecentPosts(string blogid, string username, string password, int numberOfPosts);
+    Task<BlogInfo[]> GetUsersBlogsAsync(string key, string username, string password);
 
-    string AddPost(string blogid, string username, string password, Post post, bool publish);
-    bool DeletePost(string key, string postid, string username, string password, bool publish);
-    bool EditPost(string postid, string username, string password, Post post, bool publish);
+    Task<Post> GetPostAsync(string postid, string username, string password);
 
-    CategoryInfo[] GetCategories(string blogid, string username, string password);
-    int AddCategory(string key, string username, string password, NewCategory category);
+    Task<Post[]> GetRecentPostsAsync(string blogid, string username, string password, int numberOfPosts);
 
-    MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject);
+    Task<string> AddPostAsync(string blogid, string username, string password, Post post, bool publish);
+
+    Task<bool> DeletePostAsync(string key, string postid, string username, string password, bool publish);
+
+    Task<bool> EditPostAsync(string postid, string username, string password, Post post, bool publish);
+
+    Task<CategoryInfo[]> GetCategoriesAsync(string blogid, string username, string password);
+
+    Task<int> AddCategoryAsync(string key, string username, string password, NewCategory category);
+
+    Task<MediaObjectInfo> NewMediaObjectAsync(string blogid, string username, string password, MediaObject mediaObject);
 
     Page GetPage(string blogid, string pageid, string username, string password);
     Page[] GetPages(string blogid, string username, string password, int numPages);

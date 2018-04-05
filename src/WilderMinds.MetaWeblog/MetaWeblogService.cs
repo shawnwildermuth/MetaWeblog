@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace WilderMinds.MetaWeblog
 {
@@ -14,73 +15,73 @@ namespace WilderMinds.MetaWeblog
     }
 
     [XmlRpcMethod("blogger.getUsersBlogs")]
-    public BlogInfo[] GetUsersBlogs(string key, string username, string password)
+    public async Task<BlogInfo[]> GetUsersBlogsAsync(string key, string username, string password)
     {
       _logger.LogInformation($"MetaWeblog:GetUserBlogs is called");
-      return _provider.GetUsersBlogs(key, username, password);
+      return await _provider.GetUsersBlogsAsync(key, username, password);
     }
 
     [XmlRpcMethod("blogger.getUserInfo")]
-    public UserInfo GetUserInfo(string key, string username, string password)
+    public async Task<UserInfo> GetUserInfoAsync(string key, string username, string password)
     {
       _logger.LogInformation($"MetaWeblog:GetUserInfo is called");
-      return _provider.GetUserInfo(key, username, password);
+      return await _provider.GetUserInfoAsync(key, username, password);
     }
 
     [XmlRpcMethod("wp.newCategory")]
-    public int AddCategory(string key, string username, string password, NewCategory category)
+    public async Task<int> AddCategoryAsync(string key, string username, string password, NewCategory category)
     {
       _logger.LogInformation($"MetaWeblog:AddCategory is called");
-      return _provider.AddCategory(key, username, password, category);
+      return await _provider.AddCategoryAsync(key, username, password, category);
     }
 
     [XmlRpcMethod("metaWeblog.getPost")]
-    public Post GetPost(string postid, string username, string password)
+    public async Task<Post> GetPostAsync(string postid, string username, string password)
     {
       _logger.LogInformation($"MetaWeblog:GetPost is called");
-      return _provider.GetPost(postid, username, password);
+      return await _provider.GetPostAsync(postid, username, password);
     }
 
     [XmlRpcMethod("metaWeblog.getRecentPosts")]
-    public Post[] GetRecentPosts(string blogid, string username, string password, int numberOfPosts)
+    public async Task<Post[]> GetRecentPostsAsync(string blogid, string username, string password, int numberOfPosts)
     {
       _logger.LogInformation($"MetaWeblog:GetRecentPosts is called");
-      return _provider.GetRecentPosts(blogid, username, password, numberOfPosts);
+      return await _provider.GetRecentPostsAsync(blogid, username, password, numberOfPosts);
     }
 
     [XmlRpcMethod("metaWeblog.newPost")]
-    public string AddPost(string blogid, string username, string password, Post post, bool publish)
+    public async Task<string> AddPostAsync(string blogid, string username, string password, Post post, bool publish)
     {
       _logger.LogInformation($"MetaWeblog:AddPost is called");
-      return _provider.AddPost(blogid, username, password, post, publish);
+      return await _provider.AddPostAsync(blogid, username, password, post, publish);
     }
 
     [XmlRpcMethod("metaWeblog.editPost")]
-    public bool EditPost(string postid, string username, string password, Post post, bool publish)
+    public async Task<bool> EditPostAsync(string postid, string username, string password, Post post, bool publish)
     {
       _logger.LogInformation($"MetaWeblog:EditPost is called");
-      return _provider.EditPost(postid, username, password, post, publish);
+      return await _provider.EditPostAsync(postid, username, password, post, publish);
     }
 
     [XmlRpcMethod("blogger.deletePost")]
-    public bool DeletePost(string key, string postid, string username, string password, bool publish)
+    public async Task<bool> DeletePostAsync(string key, string postid, string username, string password, bool publish)
     {
       _logger.LogInformation($"MetaWeblog:DeletePost is called");
-      return _provider.DeletePost(key, postid, username, password, publish);
+      return await _provider.DeletePostAsync(key, postid, username, password, publish);
     }
 
     [XmlRpcMethod("metaWeblog.getCategories")]
-    public CategoryInfo[] GetCategories(string blogid, string username, string password)
+    public async Task<CategoryInfo[]> GetCategoriesAsync(string blogid, string username, string password)
     {
       _logger.LogInformation($"MetaWeblog:GetCategories is called");
-      return _provider.GetCategories(blogid, username, password);
+      return await _provider.GetCategoriesAsync(blogid, username, password);
     }
 
     [XmlRpcMethod("metaWeblog.newMediaObject")]
-    public MediaObjectInfo NewMediaObject(string blogid, string username, string password, MediaObject mediaObject)
+    public async Task<MediaObjectInfo> NewMediaObjectAsync(string blogid, string username, string password, MediaObject mediaObject)
     {
       _logger.LogInformation($"MetaWeblog:NewMediaObject is called");
-      return _provider.NewMediaObject(blogid, username, password, mediaObject);
+      return await _provider.NewMediaObjectAsync(blogid, username, password, mediaObject);
     }
 
     [XmlRpcMethod("wp.getPage")]

@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Collections;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace WilderMinds.MetaWeblog
 {
@@ -21,7 +22,7 @@ namespace WilderMinds.MetaWeblog
     private string _method;
     private ILogger _logger;
 
-    public string Invoke(string xml)
+    public async Task<string> InvokeAsync(string xml)
     {
       try
       {
@@ -43,7 +44,13 @@ namespace WilderMinds.MetaWeblog
             if (attr != null && _method.ToLower() == attr.MethodName.ToLower())
             {
               var parameters = GetParameters(doc);
-              var result = typeMethod.Invoke(this, parameters);
+              Task resultTask = (Task)typeMethod.Invoke(this, parameters);
+              await resultTask;
+
+              // get result via reflection
+              PropertyInfo resultProperty = resultTask.GetType().GetProperty("Result");
+              object result = resultProperty.GetValue(resultTask);
+
               return SerializeResponse(result);
             }
           }
