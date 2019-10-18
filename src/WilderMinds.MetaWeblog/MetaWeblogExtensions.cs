@@ -16,5 +16,6 @@ namespace WilderMinds.MetaWeblog
       return coll.AddScoped<IMetaWeblogProvider, TImplementation>()
         .AddScoped<MetaWeblogService>();
     }
+
   }
 }

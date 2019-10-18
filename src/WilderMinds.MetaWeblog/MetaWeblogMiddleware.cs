@@ -17,7 +17,7 @@ namespace WilderMinds.MetaWeblog
     public MetaWeblogMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, string urlEndpoint)
     {
       _next = next;
-      _logger = loggerFactory.CreateLogger<MetaWeblogMiddleware>(); ;
+      _logger = loggerFactory.CreateLogger<MetaWeblogMiddleware>();
       _urlEndpoint = urlEndpoint;
     }
 
@@ -28,13 +28,20 @@ namespace WilderMinds.MetaWeblog
         context.Request != null && 
         context.Request.ContentType.ToLower().Contains("text/xml"))
       {
-        context.Response.ContentType = "text/xml";
-        var rdr = new StreamReader(context.Request.Body);
-        var xml = rdr.ReadToEnd();
-        _logger.LogInformation($"Request XMLRPC: {xml}");
-        string result = await service.InvokeAsync(xml);
-        _logger.LogInformation($"Result XMLRPC: {result}");
-        await context.Response.WriteAsync(result, Encoding.UTF8);
+        try
+        {
+          context.Response.ContentType = "text/xml";
+          var rdr = new StreamReader(context.Request.Body);
+          var xml = await rdr.ReadToEndAsync();
+          _logger.LogInformation($"Request XMLRPC: {xml}");
+          string result = await service.InvokeAsync(xml);
+          _logger.LogInformation($"Result XMLRPC: {result}");
+          await context.Response.WriteAsync(result, Encoding.UTF8);
+        }
+        catch (Exception ex)
+        {
+          _logger.LogError($"Failed to read the content: {ex}");
+        }
         return;
       }
 
