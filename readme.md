@@ -1,4 +1,4 @@
-#WilderMinds.MetaWeblog
+# WilderMinds.MetaWeblog
 
 Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/yc3leb1t5t6ue01i?svg=true)](https://ci.appveyor.com/project/shawnwildermuth/metaweblog)
 
