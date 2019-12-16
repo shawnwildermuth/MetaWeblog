@@ -1,6 +1,6 @@
 # WilderMinds.MetaWeblog
 
-Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/yc3leb1t5t6ue01i?svg=true)](https://ci.appveyor.com/project/shawnwildermuth/metaweblog)
+Build Status: ![Build Status](https://github.com/shawnwildermuth/metaweblog/workflows/BuildAndTest/badge.svg)
 
 To install, use the Nuget "WilderMinds.MetaWeblog":
 
