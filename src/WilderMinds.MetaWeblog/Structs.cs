@@ -26,6 +26,11 @@ namespace WilderMinds.MetaWeblog
     public string description;
   }
 
+  public class Tag
+  {
+    public string name;
+  }
+
   public class Enclosure
   {
     public int length;

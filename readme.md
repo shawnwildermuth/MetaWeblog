@@ -70,6 +70,11 @@ To support MetaWeblog, you must first create a class that implements the IMetaWe
       throw new NotImplementedException();
     }
 
+    public Task<Tag[]> GetTagsAsync(string blogid, string username, string password)
+    {
+      throw new NotImplementedException();
+    }
+
     public Page GetPage(string blogid, string pageid, string username, string password)
     {
       throw new NotImplementedException();

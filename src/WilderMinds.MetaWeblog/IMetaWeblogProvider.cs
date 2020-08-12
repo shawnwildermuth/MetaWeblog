@@ -22,6 +22,8 @@ namespace WilderMinds.MetaWeblog
 
     Task<int> AddCategoryAsync(string key, string username, string password, NewCategory category);
 
+    Task<Tag[]> GetTagsAsync(string blogid, string username, string password);
+
     Task<MediaObjectInfo> NewMediaObjectAsync(string blogid, string username, string password, MediaObject mediaObject);
 
     Task<Page> GetPageAsync(string blogid, string pageid, string username, string password);
