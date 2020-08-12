@@ -49,6 +49,7 @@ namespace WilderMinds.MetaWeblog
     public string userid;
     public string wp_slug;
     public string mt_excerpt;
+    public string mt_keywords;
     public string link;
   }
 

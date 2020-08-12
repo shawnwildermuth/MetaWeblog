@@ -180,6 +180,7 @@ namespace MetaWeblog.Tests
       Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
       Assert.True(result.Descendants("name").Any(s => s.Value == "title"), "Should contain a Post");
       Assert.True(result.Descendants("value").Any(s => s.Value == "This is a post"), "Should contain a post title");
+      Assert.True(result.Descendants("name").Any(s => s.Value == "mt_keywords"), "Should contain post tags");
     }
 
     [Fact]
@@ -258,6 +259,12 @@ namespace MetaWeblog.Tests
       <name>date_created_gmt</name>
       <value>
        <dateTime.iso8601>20160414T08:19:00</dateTime.iso8601>
+      </value>
+     </member>
+     <member>
+      <name>mt_keyword</name>
+      <value>
+       <string>addPostTag1,addPostTag2</string>
       </value>
      </member>
     </struct>

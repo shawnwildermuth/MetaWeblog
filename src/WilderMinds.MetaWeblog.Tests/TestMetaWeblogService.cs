@@ -55,6 +55,7 @@ namespace MetaWeblog.Tests
         permalink = "/123",
         title = "This is a post",
         userid = "swildermuth",
+        mt_keywords = "getPostTag1,getPostTag2",
         categories = new string[] { "usda" }
       });
     }
