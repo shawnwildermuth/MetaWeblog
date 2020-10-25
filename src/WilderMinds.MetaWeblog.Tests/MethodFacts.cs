@@ -120,6 +120,38 @@ namespace MetaWeblog.Tests
     }
 
     [Fact]
+    public async Task ShouldReturnTag()
+    {
+      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<methodCall>
+ <methodName>wp.getTags</methodName>
+ <params>
+  <param>
+   <value>
+    <string>0123456789ABCDEF</string>
+   </value>
+  </param>
+  <param>
+   <value>
+    <string>TestUser</string>
+   </value>
+  </param>
+  <param>
+   <value>
+    <string>testPassword</string>
+   </value>
+  </param>
+ </params>
+</methodCall>";
+
+      var result = await IssueMethod(xml);
+      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+      Assert.True(result.Descendants("name").Where(s => s.Value == "name").Count() == 2, "Should contain two tags");
+      Assert.True(result.Descendants("value").Any(s => s.Value == "C#"), "Should contain a tag named 'C#'");
+      Assert.True(result.Descendants("value").Any(s => s.Value == "Razor"), "Should contain a tag named 'Razor'");
+    }
+
+    [Fact]
     public async Task ShouldReturnPost()
     {
       var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
@@ -148,6 +180,7 @@ namespace MetaWeblog.Tests
       Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
       Assert.True(result.Descendants("name").Any(s => s.Value == "title"), "Should contain a Post");
       Assert.True(result.Descendants("value").Any(s => s.Value == "This is a post"), "Should contain a post title");
+      Assert.True(result.Descendants("name").Any(s => s.Value == "mt_keywords"), "Should contain post tags");
     }
 
     [Fact]
@@ -226,6 +259,12 @@ namespace MetaWeblog.Tests
       <name>date_created_gmt</name>
       <value>
        <dateTime.iso8601>20160414T08:19:00</dateTime.iso8601>
+      </value>
+     </member>
+     <member>
+      <name>mt_keyword</name>
+      <value>
+       <string>addPostTag1,addPostTag2</string>
       </value>
      </member>
     </struct>

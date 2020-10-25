@@ -26,6 +26,11 @@ namespace WilderMinds.MetaWeblog
     public string description;
   }
 
+  public class Tag
+  {
+    public string name;
+  }
+
   public class Enclosure
   {
     public int length;
@@ -44,6 +49,7 @@ namespace WilderMinds.MetaWeblog
     public string userid;
     public string wp_slug;
     public string mt_excerpt;
+    public string mt_keywords;
     public string link;
   }
 

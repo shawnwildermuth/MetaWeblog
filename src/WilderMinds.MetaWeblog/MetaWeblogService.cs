@@ -77,6 +77,13 @@ namespace WilderMinds.MetaWeblog
       return await _provider.GetCategoriesAsync(blogid, username, password);
     }
 
+    [XmlRpcMethod("wp.getTags")]
+    public async Task<Tag[]> GetTagsAsync(string blogid, string username, string password)
+    {
+      _logger.LogInformation($"MetaWeblog:GetTagsAsync is called");
+      return await _provider.GetTagsAsync(blogid, username, password);
+    }
+
     [XmlRpcMethod("metaWeblog.newMediaObject")]
     public async Task<MediaObjectInfo> NewMediaObjectAsync(string blogid, string username, string password, MediaObject mediaObject)
     {

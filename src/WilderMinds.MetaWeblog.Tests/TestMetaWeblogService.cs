@@ -36,6 +36,15 @@ namespace MetaWeblog.Tests
       });
     }
 
+    public Task<Tag[]> GetTagsAsync(string blogid, string username, string password)
+    {
+      return Task.FromResult(new Tag[]
+      {
+        new Tag() { name = "C#" },
+        new Tag() { name = "Razor" },
+      });
+    }
+
     public Task<Post> GetPostAsync(string postid, string username, string password)
     {
       return Task.FromResult(new Post()
@@ -46,6 +55,7 @@ namespace MetaWeblog.Tests
         permalink = "/123",
         title = "This is a post",
         userid = "swildermuth",
+        mt_keywords = "getPostTag1,getPostTag2",
         categories = new string[] { "usda" }
       });
     }
