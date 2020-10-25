@@ -5,14 +5,10 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: mcr.microsoft.com/dotnet/core/sdk:3.1
 
     steps:
     - uses: actions/checkout@v1
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.9
     - name: Build with dotnet
       working-directory: ./src
       run: dotnet build --configuration Release
