@@ -4,7 +4,7 @@
     <Description>A MetaWeblog API implementation for ASP.NET Core.</Description>
     <VersionPrefix>3.1.0</VersionPrefix>
     <Authors>Shawn Wildermuth</Authors>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyName>WilderMinds.MetaWeblog</AssemblyName>
     <PackageId>WilderMinds.MetaWeblog</PackageId>
@@ -18,9 +18,10 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <Version>3.1.1</Version>
+    <Version>5.0.0</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>3.1.1.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <FileVersion>5.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

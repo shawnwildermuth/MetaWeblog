@@ -34,7 +34,7 @@ namespace WilderMinds.MetaWeblog
         {
           _method = methodNameElement.Value;
 
-          _logger.LogInformation($"Invoking {_method} on XMLRPC Service");
+          _logger.LogDebug($"Invoking {_method} on XMLRPC Service");
 
           var theType = GetType();
 

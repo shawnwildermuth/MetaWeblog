@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>MetaWeblog.Tests Class Library</Description>
     <Authors>shawn</Authors>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyName>WilderMinds.MetaWeblog.Tests</AssemblyName>
     <PackageId>WilderMinds.MetaWeblog.Tests</PackageId>
