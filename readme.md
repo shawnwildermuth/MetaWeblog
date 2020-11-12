@@ -1,6 +1,9 @@
 # WilderMinds.MetaWeblog
 
-Build Status: ![Build Status](https://github.com/shawnwildermuth/metaweblog/workflows/BuildAndTest/badge.svg)
+Project Status: 
+
+![Build](https://github.com/shawnwildermuth/metaweblog/workflows/BuildAndTest/badge.svg)
+[![NuGet](https://img.shields.io/nuget/v/WilderMinds.MetaWeblog.svg)](https://www.nuget.org/packages/WilderMinds.MetaWeblog)
 
 To install, use the Nuget "WilderMinds.MetaWeblog":
 
