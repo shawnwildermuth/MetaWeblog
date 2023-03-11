@@ -52,6 +52,8 @@ namespace WilderMinds.MetaWeblog
     public string mt_keywords;
     public string link;
     public string wp_post_thumbnail;
+    public int mt_allow_comments;
+    public string mt_basename;
   }
 
   public class Source
