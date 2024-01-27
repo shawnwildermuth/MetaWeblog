@@ -11,7 +11,7 @@ To install, use the Nuget "WilderMinds.MetaWeblog":
   PM> Install-Package WilderMinds.MetaWeblog
 ```
 
-This project is an ASP.NET Core 2.0 Middleware component to support the MetaWeblog API 
+This project is an ASP.NET Core 8.0 Middleware component to support the MetaWeblog API 
 that WordPress and Windows LiveWriter uses to support adding and editing of content
 in blogs.
 

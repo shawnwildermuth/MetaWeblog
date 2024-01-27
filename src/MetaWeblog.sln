@@ -1,18 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29609.76
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{14517B62-DED6-4608-88BC-06964A2E7F4C}"
-	ProjectSection(SolutionItems) = preProject
-		..\.editorconfig = ..\.editorconfig
-		..\readme.md = ..\readme.md
-		..\.github\workflows\theBuild.yml = ..\.github\workflows\theBuild.yml
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WilderMinds.MetaWeblog", "WilderMinds.MetaWeblog\WilderMinds.MetaWeblog.csproj", "{7A3D3EE4-4B35-402C-83DE-41494DA02349}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilderMinds.MetaWeblog", "WilderMinds.MetaWeblog\WilderMinds.MetaWeblog.csproj", "{E41F72F8-A593-4850-8280-D151FE7B8743}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WilderMinds.MetaWeblog.Tests", "WilderMinds.MetaWeblog.Tests\WilderMinds.MetaWeblog.Tests.csproj", "{E7539BE6-B18F-47E7-9AD7-2D87924E0EAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WilderMinds.MetaWeblog.Tests", "WilderMinds.MetaWeblog.Tests\WilderMinds.MetaWeblog.Tests.csproj", "{74BC1F8E-2C2E-4B8B-A856-76C78E208A4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,19 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E41F72F8-A593-4850-8280-D151FE7B8743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E41F72F8-A593-4850-8280-D151FE7B8743}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E41F72F8-A593-4850-8280-D151FE7B8743}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E41F72F8-A593-4850-8280-D151FE7B8743}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7539BE6-B18F-47E7-9AD7-2D87924E0EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7539BE6-B18F-47E7-9AD7-2D87924E0EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7539BE6-B18F-47E7-9AD7-2D87924E0EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7539BE6-B18F-47E7-9AD7-2D87924E0EAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A3D3EE4-4B35-402C-83DE-41494DA02349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3D3EE4-4B35-402C-83DE-41494DA02349}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3D3EE4-4B35-402C-83DE-41494DA02349}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3D3EE4-4B35-402C-83DE-41494DA02349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74BC1F8E-2C2E-4B8B-A856-76C78E208A4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74BC1F8E-2C2E-4B8B-A856-76C78E208A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74BC1F8E-2C2E-4B8B-A856-76C78E208A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74BC1F8E-2C2E-4B8B-A856-76C78E208A4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2F7ED408-BD5A-4FE5-8BCB-6E924604C9EA}
+		SolutionGuid = {1752FCC4-54FB-408A-A987-ECD315DDFDAE}
 	EndGlobalSection
 EndGlobal

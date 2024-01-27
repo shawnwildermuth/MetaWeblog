@@ -1,34 +1,27 @@
-ï»¿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using WilderMinds.MetaWeblog;
-using Xunit;
 
-namespace MetaWeblog.Tests
+namespace MetaWeblog.Tests;
+
+public class MethodFacts
 {
-  public class MethodFacts
-  {
 
     TestServer GetServer()
     {
-      var bldr = new WebHostBuilder()
-        .Configure(app => app.UseMetaWeblog("/livewriter"))
-        .ConfigureServices( svcs => svcs.AddMetaWeblog<TestMetaWeblogService>());
-      return new TestServer(bldr);
+        var bldr = new WebHostBuilder()
+          .Configure(app => app.UseMetaWeblog("/livewriter"))
+          .ConfigureServices(svcs => svcs.AddMetaWeblog<TestMetaWeblogService>());
+        return new TestServer(bldr);
     }
 
     [Fact]
     public async Task ShouldReturnBlogInfo()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>blogger.getUsersBlogs</methodName>
  <params>
@@ -50,18 +43,18 @@ namespace MetaWeblog.Tests
  </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
-      Assert.True(result.Descendants("string").Any(s => s.Value == "Test Blog"), "Should contain name of test blog");
-      var blogid = result.Descendants("name").Where(x => x.Value == "blogid").FirstOrDefault();
-      Assert.NotNull(blogid);
-      Assert.True(blogid.Parent.Parent.Parent.Name.LocalName == "value");
+        var result = await IssueMethod(xml);
+        Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+        Assert.True(result.Descendants("string").Any(s => s.Value == "Test Blog"), "Should contain name of test blog");
+        var blogid = result.Descendants("name")!.Where(x => x.Value == "blogid").FirstOrDefault();
+        Assert.NotNull(blogid);
+        Assert.True(blogid.Parent!.Parent!.Parent!.Name.LocalName == "value");
     }
 
     [Fact]
     public async Task ShouldReturnUserInfo()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>blogger.getUserInfo</methodName>
  <params>
@@ -83,15 +76,15 @@ namespace MetaWeblog.Tests
  </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
-      Assert.True(result.Descendants("string").Any(s => s.Value == "me@us.com"), "Should contain the email of the user");
+        var result = await IssueMethod(xml);
+        Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+        Assert.True(result.Descendants("string").Any(s => s.Value == "me@us.com"), "Should contain the email of the user");
     }
 
     [Fact]
     public async Task ShouldReturnCategoryInfo()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>metaWeblog.getCategories</methodName>
  <params>
@@ -113,16 +106,16 @@ namespace MetaWeblog.Tests
  </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
-      Assert.True(result.Descendants("name").Any(s => s.Value == "title"), "Should contain categories");
-      Assert.True(result.Descendants("value").Any(s => s.Value == "ASP.NET"), "Should contain a category name");
+        var result = await IssueMethod(xml);
+        Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+        Assert.True(result.Descendants("name").Any(s => s.Value == "title"), "Should contain categories");
+        Assert.True(result.Descendants("value").Any(s => s.Value == "ASP.NET"), "Should contain a category name");
     }
 
     [Fact]
     public async Task ShouldReturnTag()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>wp.getTags</methodName>
  <params>
@@ -144,17 +137,17 @@ namespace MetaWeblog.Tests
  </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
-      Assert.True(result.Descendants("name").Where(s => s.Value == "name").Count() == 2, "Should contain two tags");
-      Assert.True(result.Descendants("value").Any(s => s.Value == "C#"), "Should contain a tag named 'C#'");
-      Assert.True(result.Descendants("value").Any(s => s.Value == "Razor"), "Should contain a tag named 'Razor'");
+        var result = await IssueMethod(xml);
+        Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+        Assert.True(result.Descendants("name").Where(s => s.Value == "name").Count() == 2, "Should contain two tags");
+        Assert.True(result.Descendants("value").Any(s => s.Value == "C#"), "Should contain a tag named 'C#'");
+        Assert.True(result.Descendants("value").Any(s => s.Value == "Razor"), "Should contain a tag named 'Razor'");
     }
 
     [Fact]
     public async Task ShouldReturnPost()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>metaWeblog.getPost</methodName>
  <params>
@@ -176,17 +169,17 @@ namespace MetaWeblog.Tests
  </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
-      Assert.True(result.Descendants("name").Any(s => s.Value == "title"), "Should contain a Post");
-      Assert.True(result.Descendants("value").Any(s => s.Value == "This is a post"), "Should contain a post title");
-      Assert.True(result.Descendants("name").Any(s => s.Value == "mt_keywords"), "Should contain post tags");
+        var result = await IssueMethod(xml);
+        Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+        Assert.True(result.Descendants("name").Any(s => s.Value == "title"), "Should contain a Post");
+        Assert.True(result.Descendants("value").Any(s => s.Value == "This is a post"), "Should contain a post title");
+        Assert.True(result.Descendants("name").Any(s => s.Value == "mt_keywords"), "Should contain post tags");
     }
 
     [Fact]
     public async Task ShouldReturnFailure()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>foo.bar</methodName>
  <params>
@@ -198,16 +191,16 @@ namespace MetaWeblog.Tests
   </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(result.Descendants("fault").Any(), "Should contain the fault");
-      Assert.True(result.Descendants("name").Any(s => s.Value == "faultCode"), "Should contain the fault code");
-      Assert.True(result.Descendants("name").Any(s => s.Value == "faultString"), "Should contain the fault string");
+        var result = await IssueMethod(xml);
+        Assert.True(result.Descendants("fault").Any(), "Should contain the fault");
+        Assert.True(result.Descendants("name").Any(s => s.Value == "faultCode"), "Should contain the fault code");
+        Assert.True(result.Descendants("name").Any(s => s.Value == "faultString"), "Should contain the fault string");
     }
 
     [Fact]
     public async Task ShouldAddPost()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>metaWeblog.newPost</methodName>
  <params>
@@ -238,7 +231,7 @@ namespace MetaWeblog.Tests
      <member>
       <name>description</name>
       <value>
-       <string>&lt;p&gt;&lt;a href=""https://wilderminds.blob.core.windows.net/img/javascript_2.jpg""&gt;&lt;img width=""244"" height=""184"" title=""javascript"" align=""right"" style=""float: right; display: inline; background-image: none;"" alt=""javascript"" src=""https://wilderminds.blob.core.windows.net/img/javascript_thumb.jpg"" border=""0""&gt;&lt;/a&gt;A while back, I decided that this blog deserved a clean coat of paint and since Iâ€™m digging into ASP.NET Core, it was logical to re-write it. I wanted more than just to change the look, I wanted to make some real changes to the code and finally open source the code too!&lt;/p&gt;&lt;p&gt;Open sourcing the code required that I do a few things. First of all, I had to change any code that I would be embarrassed by (not a trivial task), but also make it so that much of normal secrets werenâ€™t exposed by open sourcing it (e.g. connection strings, etc.).&lt;/p&gt;</string>
+       <string>&lt;p&gt;&lt;a href=""https://wilderminds.blob.core.windows.net/img/javascript_2.jpg""&gt;&lt;img width=""244"" height=""184"" title=""javascript"" align=""right"" style=""float: right; display: inline; background-image: none;"" alt=""javascript"" src=""https://wilderminds.blob.core.windows.net/img/javascript_thumb.jpg"" border=""0""&gt;&lt;/a&gt;A while back, I decided that this blog deserved a clean coat of paint and since I’m digging into ASP.NET Core, it was logical to re-write it. I wanted more than just to change the look, I wanted to make some real changes to the code and finally open source the code too!&lt;/p&gt;&lt;p&gt;Open sourcing the code required that I do a few things. First of all, I had to change any code that I would be embarrassed by (not a trivial task), but also make it so that much of normal secrets weren’t exposed by open sourcing it (e.g. connection strings, etc.).&lt;/p&gt;</string>
       </value>
      </member>
      <member>
@@ -278,14 +271,14 @@ namespace MetaWeblog.Tests
  </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+        var result = await IssueMethod(xml);
+        Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
     }
 
     [Fact]
     public async Task ShouldAddMedia()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>metaWeblog.newMediaObject</methodName>
  <params>
@@ -331,14 +324,14 @@ namespace MetaWeblog.Tests
  </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+        var result = await IssueMethod(xml);
+        Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
     }
 
     [Fact]
     public async Task ShouldAddCategory()
     {
-      var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+        var xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <methodCall>
  <methodName>wp.newCategory</methodName>
  <params>
@@ -378,23 +371,22 @@ namespace MetaWeblog.Tests
  </params>
 </methodCall>";
 
-      var result = await IssueMethod(xml);
-      Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
+        var result = await IssueMethod(xml);
+        Assert.True(!result.Descendants("fault").Any(), "Should not contain a fault");
     }
 
     async Task<XDocument> IssueMethod(string xml)
     {
-      using (var server = GetServer())
-      {
-        var content = new StringContent(xml, Encoding.UTF8, "text/xml");
-        var result = await server.CreateClient().PostAsync("/livewriter", content);
+        using (var server = GetServer())
+        {
+            var content = new StringContent(xml, Encoding.UTF8, "text/xml");
+            var result = await server.CreateClient().PostAsync("/livewriter", content);
 
-        var doc = XDocument.Parse(await result.Content.ReadAsStringAsync());
+            var doc = XDocument.Parse(await result.Content.ReadAsStringAsync());
 
-        return doc;
-      }
+            return doc;
+        }
     }
 
 
-  }
 }
