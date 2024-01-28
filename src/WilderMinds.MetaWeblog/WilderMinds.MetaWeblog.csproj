@@ -18,10 +18,11 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <Version>5.1.1</Version>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>5.1.1.0</AssemblyVersion>
-    <FileVersion>5.1.1.0</FileVersion>
+    <Version>5.1.2</Version>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <AssemblyVersion>5.1.2.0</AssemblyVersion>
+    <FileVersion>5.1.2.0</FileVersion>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
