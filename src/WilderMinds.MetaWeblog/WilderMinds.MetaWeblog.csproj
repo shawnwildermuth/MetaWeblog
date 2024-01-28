@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>A MetaWeblog API implementation for ASP.NET Core.</Description>
-    <VersionPrefix>3.1.0</VersionPrefix>
+    <VersionPrefix>5.1.2</VersionPrefix>
     <Authors>Shawn Wildermuth</Authors>
     <TargetFramework>netstandard2.1</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -10,6 +10,7 @@
     <PackageId>WilderMinds.MetaWeblog</PackageId>
     <PackageTags>xmlrpc;metablogapi;blogs</PackageTags>
     <PackageProjectUrl>http://github.com/shawnwildermuth/metaweblog</PackageProjectUrl>
+    <PackageReleaseNotes>[Version History](http://github.com/shawnwildermuth/metaweblog/blob/main/VersionHistory.md)</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/shawnwildermuth/metaweblog</RepositoryUrl>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -23,7 +24,27 @@
     <AssemblyVersion>5.1.2.0</AssemblyVersion>
     <FileVersion>5.1.2.0</FileVersion>
     <IsPackable>true</IsPackable>
+    <Title>MetaWeblog for .NET Core</Title>
+    <Copyright>2024 Wilder Minds LLC</Copyright>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageLicenseFile>license</PackageLicenseFile>
+    <PackageIcon>wilderminds-logo.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\MinimalApis.FluentValidation\license">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\..\MinimalApis.FluentValidation\readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\..\MinimalApis.FluentValidation\wilderminds-logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
